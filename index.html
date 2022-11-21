@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<HTML>
+    <head>
+        <title>SocialMe - Prototype 1</title>
+        <link rel="stylesheet" href="style/home.css">
+        <link rel="stylesheet" href="style/style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet"> 
+    </head>
+
+    <body style="display: flex; align-items: center; justify-content: center;">
+        <div class="container-screen-one">
+            <!-- Header Biodata User -->
+            <header>
+                <nav>
+                    <div class="user-biodata">
+                        <div class="profile-picture">
+                            <img src="picture/profilepicture/1.jpg">
+                        </div>
+                        <div class="user-info">
+                            <div class="user-info-details">
+                                
+                                <div class="user-name">
+                                    <div>
+                                        Melanie Tan 
+                                        <img class="verified-icon" src="picture/icons/Verified_Badge.svg"/>
+                                    </div>
+                                    <div>
+                                        <img class="menu-icon" src="picture/icons/Hamburger.svg"/>
+                                    </div>
+                                </div>
+                                
+                                <div class="user-occupation">
+                                    Professional Food Photographer
+                                </div>
+                                
+                                <div class="user-location-email-info">
+                                    <img class="icon" src="picture/icons/Locations.svg"/>
+                                    <p>Bangkok</p>
+                                    <img class="icon" src="picture/icons/Mail.svg"/>
+                                    <p>melanitan99@gmail.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+
+            <main>
+
+                <!-- Food Slider -->
+                <div class="food-slider">
+                    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                    <div class="container_slider fade">
+                        <img class="picture_slider" src="picture/foodpicture/1.jpg">
+                        <p>Yummy Pancake</p>
+                    </div>
+
+                    <div class="container_slider fade">
+                        <img class="picture_slider" src="picture/foodpicture/2.jpg">
+                        <p>Grilled Chicken</p>
+                    </div>
+
+                    <div class="container_slider fade">
+                        <img class="picture_slider" src="picture/foodpicture/5.jpg">
+                        <p>Authentic Italian</p>
+                    </div>
+
+                    <div class="container_slider fade">
+                        <img class="picture_slider" src="picture/foodpicture/7.jpg">
+                        <p>Flavourful Biryani</p>
+                    </div>
+
+                    <div class="container_slider fade">
+                        <img class="picture_slider" src="picture/foodpicture/8.jpg">
+                        <p>Full Burger</p>
+                    </div>
+
+                    <div class="container_slider fade">
+                        <img class="picture_slider" src="picture/foodpicture/9.jpg">
+                        <p>Fruit Bowl</p>
+                    </div>
+
+                    <div class="container_slider fade">
+                        <img class="picture_slider" src="picture/foodpicture/3.jpg">
+                        <p>Caesar Salad</p>
+                    </div>
+
+                    <div class="container_slider fade">
+                        <img class="picture_slider" src="picture/foodpicture/4.jpg">
+                        <p>Vegan Pasta</p>
+                    </div>
+
+                    <div class="container_slider fade">
+                        <img class="picture_slider" src="picture/foodpicture/13.jpg">
+                        <p>Delicious Gnocchi Pasta</p>
+                    </div>
+
+                    <div class="container_slider fade">
+                        <img class="picture_slider" src="picture/foodpicture/12.jpg">
+                        <p>A5 Steak</p>
+                    </div>
+                    
+                    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                </div>
+                
+                <!-- Food Picture dari awal -->
+                <div class="food-picture">
+                    <div class="image-row-one">
+                        <img class="picture1" src="picture/foodpicture/1.jpg">
+                        <img class="picture2" src="picture/foodpicture/3.jpg">
+                        <img class="picture1" src="picture/foodpicture/5.jpg">
+                        <img class="picture2" src="picture/foodpicture/7.jpg">
+                        <img class="picture1" src="picture/foodpicture/10.jpg">
+    
+                    </div>
+                    <div class="image-row-two">
+                        <img class="picture2" src="picture/foodpicture/2.jpg">
+                        <img class="picture1" src="picture/foodpicture/4.jpg">
+                        <img class="picture2" src="picture/foodpicture/6.jpg">
+                        <img class="picture2" src="picture/foodpicture/8.jpg">
+                    </div>
+                </div>
+
+                <div class="loading"></div>
+            </main>
+        </div>
+
+        <script>
+            const nav = document.querySelector('nav');
+            const header = document.querySelector('header');
+            const main = document.querySelector('.food-picture');
+            let prevScrollpos = window.pageYOffset;
+
+            window.addEventListener('scroll', ()=> {
+                let currentScrollPos= window.pageYOffset;
+                
+                if(prevScrollpos < currentScrollPos) {
+                    nav.classList.add('hide');
+                    header.classList.add('hide');
+                    main.classList.remove('show');
+                }else{
+                    nav.classList.remove('hide');
+                    header.classList.remove('hide');
+                }
+
+                prevScrollpos = currentScrollPos;
+            })
+
+
+            let slideIndex = 1;
+            showSlides(slideIndex);
+
+            // Next/previous controls
+            function plusSlides(n) {
+            showSlides(slideIndex += n);
+            }
+
+            // Thumbnail image controls
+            function currentSlide(n) {
+            showSlides(slideIndex = n);
+            }
+
+            function showSlides(n) {
+            let i;
+            let slides = document.getElementsByClassName("container_slider");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length}
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            slides[slideIndex-1].style.display = "block";
+            }
+
+
+            //array data gambar & direktori
+            const imageData = [
+                {
+                    class: "image1",
+                    imageSrc: "picture/foodpicture/1.jpg",
+                },
+
+                {
+                    class: "image2",
+                    imageSrc: "picture/foodpicture/2.jpg",
+                },
+
+                {
+                    class: "image1",
+                    imageSrc: "picture/foodpicture/3.jpg",
+                },
+
+                {
+                    class: "image1",
+                    imageSrc: "picture/foodpicture/4.jpg",
+                },
+                { 
+                    class: "image1", 
+                    imageSrc: "picture/foodpicture/5.jpg" 
+                },
+                { 
+                    class: "image2", 
+                    imageSrc: "picture/foodpicture/6.jpg"
+                },
+                {
+                    class: "image1",
+                    imageSrc: "picture/foodpicture/7.jpg",
+                },
+
+                {
+                    class: "image2",
+                    imageSrc: "picture/foodpicture/8.jpg",
+                },
+
+                {
+                    class: "image1",
+                    imageSrc: "picture/foodpicture/9.jpg",
+                },
+
+                {
+                    class: "image1",
+                    imageSrc: "picture/foodpicture/10.jpg",
+                },
+                { 
+                    class: "image1", 
+                    imageSrc: "picture/foodpicture/11.jpg" 
+                },
+                { 
+                    class: "image2", 
+                    imageSrc: "picture/foodpicture/12.jpg"
+                },
+            ];
+
+            let mainContainer1 = document.querySelector(".image-row-one");
+            let mainContainer2 = document.querySelector(".image-row-two");
+            let footerUI = document.querySelector(".loading");
+
+            //Random decision making function
+            function randomDecision(varaibleItem) {
+                return Math.floor(Math.random() * varaibleItem);
+            }
+
+            function dynamicPostUpdate() {
+            let contentHeight = mainContainer1.offsetHeight;
+            let verticalOffset = window.pageYOffset;
+            let verticalDistance = verticalOffset + window.innerHeight;
+
+            if (verticalDistance >= contentHeight) {
+                footerUI.style.display = "block";
+                setTimeout(function () {
+                footerUI.style.display = "none";
+                createMoreContents();
+                }, 3000);
+            } else {
+                footerUI.style.display = "none";
+            }
+            }
+
+            window.addEventListener("scroll", dynamicPostUpdate);
+
+            function createMoreContents() {
+                let postsPerSeconds = randomDecision(5);
+
+                for (let count = 0; count < postsPerSeconds; count++) {
+                    var img = new Image();
+                    
+                    img.src = `${
+                        imageData[randomDecision(imageData.length)].imageSrc
+                        }`;
+                    if (postsPerSeconds % 2 == 0) {
+                        img.className = "picture2";
+                        mainContainer1.appendChild(img)
+                    }else{
+                        img.className = "picture1";
+                        mainContainer2.appendChild(img)
+                    }
+                    
+                    
+                }
+            }
+
+        </script>
+    </body>
+</HTML>
